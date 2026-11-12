@@ -1,0 +1,59 @@
+{
+  "name": "omnis-tv",
+  "productName": "Omnis Auxiliary Screens",
+  "version": "1.1.5",
+  "description": "Omnis Auxiliary Screens - Fleetrack wall screens (DBR, WIP, MDR, STS)",
+  "main": "main.js",
+  "author": "Machinery Exchange",
+  "license": "UNLICENSED",
+  "scripts": {
+    "sync": "node scripts/sync-screens.js",
+    "start": "node scripts/sync-screens.js && electron .",
+    "build": "node scripts/sync-screens.js && electron-builder --win --publish never",
+    "release": "node scripts/sync-screens.js && electron-builder --win --publish always"
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  },
+  "build": {
+    "appId": "com.omnis.tv",
+    "productName": "Omnis Auxiliary Screens",
+    "electronVersion": "39.2.5",
+    "npmRebuild": false,
+    "compression": "maximum",
+    "directories": { "output": "dist" },
+    "files": [
+      "main.js",
+      "preload.js",
+      "setup.html",
+      "package.json",
+      "systems/fleetrack/kiosk.html",
+      "assets/images/omnis-logo.png",
+      "assets/images/omnis-logo-white.png",
+      "assets/images/omnis-notification-icon.png",
+      "!dist",
+      "!scripts",
+      "!**/node_modules/**/*.{md,markdown,map,ts,tsbuildinfo}"
+    ],
+    "electronLanguages": ["en-US", "en-GB"],
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/images/omnis-notification-icon.png"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "runAfterFinish": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Omnis Auxiliary Screens",
+      "artifactName": "Omnis_Auxiliary_Screens_Setup_${version}.exe"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "tahcool",
+      "repo": "Omnis-TV"
+    }
+  }
+}
+

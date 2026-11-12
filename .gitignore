@@ -1,0 +1,6 @@
+# Copied in by scripts/sync-screens.js from the main project (single source of truth)
+systems/
+assets/
+node_modules/
+dist/
+
